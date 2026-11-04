@@ -126,6 +126,35 @@ body::before {
 .facts dd { text-wrap: pretty; }
 .hero__actions { display: flex; flex-wrap: wrap; gap: 1rem; }
 
+/* Hero entrance: the wordmark types itself in, then the details rise and the turkey drops in. */
+.hero .wm__part { animation: wm-type 0.9s steps(12, end) both; }
+.hero .wm__part--orange { animation-delay: 0.55s; }
+.hero .wm__part--cream { animation-delay: 0.1s; }
+.hero__tagline, .facts > div, .hero__actions > * { animation: rise 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) backwards; }
+.hero__tagline { animation-delay: 1.3s; }
+.facts { border-top-color: transparent; position: relative; }
+.facts::before { content: ""; position: absolute; inset: -2px 0 auto; height: 2px; background: var(--navy-line); transform-origin: left; animation: draw 0.7s 1.35s cubic-bezier(0.6, 0, 0.2, 1) both; }
+.facts > div:nth-child(1) { animation-delay: 1.45s; }
+.facts > div:nth-child(2) { animation-delay: 1.55s; }
+.facts > div:nth-child(3) { animation-delay: 1.65s; }
+.facts > div:nth-child(4) { animation-delay: 1.75s; }
+.hero__actions > :nth-child(1) { animation-delay: 1.95s; }
+.hero__actions > :nth-child(2) { animation-delay: 2.05s; }
+.hero__turkey { animation: turkey-drop 0.9s 1.1s cubic-bezier(0.3, 1.4, 0.5, 1) both, turkey-bob 2.4s 2.2s steps(2, jump-none) infinite; }
+.hero__actions .button:first-child::after { content: ""; position: absolute; inset: -4px; border: 2px solid var(--gold); opacity: 0; animation: ping 1.4s 2.6s ease-out 2; pointer-events: none; }
+.hero__actions .button:first-child { position: relative; }
+
+@keyframes wm-type { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@keyframes draw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes turkey-drop {
+  0% { opacity: 0; transform: translateY(-60px) rotate(-8deg); }
+  60% { opacity: 1; }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes turkey-bob { 0%, 100% { translate: 0 0; } 50% { translate: 0 -6px; } }
+@keyframes ping { 0% { opacity: 0.9; transform: scale(1); } 100% { opacity: 0; transform: scale(1.18, 1.5); } }
+
 /* Generic sections */
 .section { padding-block: var(--section-space); }
 .section__title { font-family: var(--font-display); font-weight: 400; font-size: var(--step-3); }
@@ -286,4 +315,5 @@ body::before {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .button, .laptop__submit { transition: none; }
+  .hero *, .hero *::before, .hero *::after { animation: none !important; }
 }
