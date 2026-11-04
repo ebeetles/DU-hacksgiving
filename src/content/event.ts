@@ -21,6 +21,9 @@ export const event = {
 
   donationsOpen: "November 9",
 
+  /** The fourth category stays locked until the day of the event. Set to true to reveal it. */
+  secretCategoryRevealed: false,
+
   fundraising: {
     minimumPerPerson: 5,
     /** Used for the "$20 minimum" and meal examples. */

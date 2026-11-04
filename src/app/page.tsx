@@ -8,6 +8,7 @@ import {
   stillDeciding,
 } from "@/content/event";
 import { GravyLaptop } from "@/components/GravyLaptop";
+import { LockedCategory } from "@/components/LockedCategory";
 import { SignupEmbed } from "@/components/SignupEmbed";
 import { Wordmark } from "@/components/Wordmark";
 
@@ -91,22 +92,30 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="john" id="john-upsilon">
-        <div className="wrap john__inner">
-          <div className="john__story">
-            <h2 className="john__title">John Upsilon Turkey Award</h2>
-            <p>
-              John has an assignment due by midnight, but he still needs to eat. His hands are
-              covered in delicious gravy, and he needs a way to use his computer.
-            </p>
-            <p>
-              Come up with a creative way to help him. Brothers will rigorously test every entry
-              while eating a hearty Thanksgiving meal.
-            </p>
+      {event.secretCategoryRevealed ? (
+        <section className="john" id="john-upsilon">
+          <div className="wrap john__inner">
+            <div className="john__story">
+              <h2 className="john__title">John Upsilon Turkey Award</h2>
+              <p>
+                John has an assignment due by midnight, but he still needs to eat. His hands are
+                covered in delicious gravy, and he needs a way to use his computer.
+              </p>
+              <p>
+                Come up with a creative way to help him. Brothers will rigorously test every entry
+                while eating a hearty Thanksgiving meal.
+              </p>
+            </div>
+            <GravyLaptop />
           </div>
-          <GravyLaptop />
-        </div>
-      </section>
+        </section>
+      ) : (
+        <section className="vault" id="secret-category">
+          <div className="wrap">
+            <LockedCategory />
+          </div>
+        </section>
+      )}
 
       <section className="fund" id="fundraising">
         <div className="wrap fund__inner">
