@@ -8,6 +8,7 @@ import {
   stillDeciding,
 } from "@/content/event";
 import { GravyLaptop } from "@/components/GravyLaptop";
+import { GreekLetters } from "@/components/GreekLetters";
 import { LockedCategory } from "@/components/LockedCategory";
 import { SignupEmbed } from "@/components/SignupEmbed";
 import { Wordmark } from "@/components/Wordmark";
@@ -19,6 +20,10 @@ export default function Home() {
     <>
       <section className="hero">
         <div className="wrap hero__inner">
+          <p className="hero__presents">
+            <GreekLetters className="hero__greek" />
+            {event.host} presents
+          </p>
           <h1 className="wordmark">
             <span className="sr">Hacksgiving</span>
             <Wordmark />
@@ -212,6 +217,26 @@ export default function Home() {
               Every participant should go home with something. Expect turkey stickers in a few
               designs, and a shirt supporting the food drive.
             </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="section hosts" id="hosts">
+        <div className="wrap">
+          <div className="hosts__panel">
+            <GreekLetters className="hosts__greek" />
+            <div className="hosts__text">
+              <h2 className="section__title">Hosted by {event.host}</h2>
+              <p>
+                Hacksgiving is run by the brothers of {event.host} at Carnegie Mellon, a
+                non-hazing, non-secret fraternity where everyone can belong.
+              </p>
+              <p>
+                We&apos;re judging Best Technical, cooking up the dinner plans, and sending every
+                dollar you raise to the food bank.
+              </p>
+              <p className="hosts__motto">{event.motto}</p>
+            </div>
           </div>
         </div>
       </section>
