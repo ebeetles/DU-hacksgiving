@@ -16,8 +16,8 @@ export const event = {
   fundraisingDeadline: null as string | null,
   prizes: null as string | null,
   dinnerFee: "about $5" as string | null,
-  /** Largest team allowed. The proposal's $20 minimum implies four. */
-  teamSize: null as number | null,
+  /** Largest team allowed. */
+  teamSize: 4 as number | null,
 
   donationsOpen: "November 9",
 
