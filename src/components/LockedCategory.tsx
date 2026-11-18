@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { event } from "@/content/event";
+import { event, usd } from "@/content/event";
 
 const TAUNTS = [
   "Nice try.",
@@ -48,6 +48,7 @@ export function LockedCategory() {
             <span style={{ width: "6ch" }} />
           </span>
         </h2>
+        {event.prizePerCategory && <p className="prize__amount">{usd(event.prizePerCategory)}</p>}
         <div className="redact redact--lines" aria-hidden="true">
           <span style={{ width: "92%" }} />
           <span style={{ width: "78%" }} />

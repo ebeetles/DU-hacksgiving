@@ -14,7 +14,8 @@ export const event = {
 
   location: null as string | null,
   fundraisingDeadline: null as string | null,
-  prizes: null as string | null,
+  /** Prize for the winning team in each category, in dollars. */
+  prizePerCategory: 500 as number | null,
   dinnerFee: "about $5" as string | null,
   /** Largest team allowed. */
   teamSize: 4 as number | null,
@@ -47,6 +48,9 @@ export const exampleTeamMinimum =
   event.fundraising.minimumPerPerson * event.fundraising.exampleTeamSize;
 export const exampleTeamMeals = exampleTeamMinimum * event.fundraising.mealsPerDollar;
 
+/** "$2,000" */
+export const usd = (amount: number) => `$${amount.toLocaleString("en-US")}`;
+
 export const categories = [
   {
     id: "technical",
@@ -71,6 +75,10 @@ export const categories = [
   },
 ] as const;
 
+/** The three categories above plus the secret one. */
+export const categoryCount = categories.length + 1;
+export const prizePool = event.prizePerCategory ? event.prizePerCategory * categoryCount : null;
+
 export const faqs: { question: string; answer: string }[] = [
   {
     question: "Who can join?",
@@ -80,6 +88,13 @@ export const faqs: { question: string; answer: string }[] = [
     question: "Do I need a team?",
     answer:
       "No. If you don't have one, choose to be matched with a group on the signup form.",
+  },
+  {
+    question: "What can we win?",
+    answer:
+      event.prizePerCategory && prizePool
+        ? `${usd(event.prizePerCategory)} for the winning team in each of the ${categoryCount} categories, ${usd(prizePool)} in all.`
+        : "Prize details are coming soon.",
   },
   {
     question: "Do I need to be a strong programmer?",
@@ -118,6 +133,6 @@ export const stillDeciding = [
   !event.location && "the location",
   !event.fundraisingDeadline && "the fundraising deadline",
   !event.teamSize && "the team size limit",
-  !event.prizes && "the prizes",
+  !event.prizePerCategory && "the prizes",
   !event.dinnerFee && "the dinner fee",
 ].filter(Boolean) as string[];

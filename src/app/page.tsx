@@ -1,11 +1,14 @@
 import Link from "next/link";
 import {
   categories,
+  categoryCount,
   event,
   exampleTeamMeals,
   exampleTeamMinimum,
   faqs,
+  prizePool,
   stillDeciding,
+  usd,
 } from "@/content/event";
 import { GravyLaptop } from "@/components/GravyLaptop";
 import { GreekLetters } from "@/components/GreekLetters";
@@ -14,6 +17,7 @@ import { SignupEmbed } from "@/components/SignupEmbed";
 import { Wordmark } from "@/components/Wordmark";
 
 const { minimumPerPerson, mealsPerDollar, beneficiary } = event.fundraising;
+const { prizePerCategory } = event;
 
 export default function Home() {
   return (
@@ -28,6 +32,15 @@ export default function Home() {
             <span className="sr">Hacksgiving</span>
             <Wordmark />
           </h1>
+          {prizePerCategory && prizePool && (
+            <p className="pool">
+              <span className="pool__amount">{usd(prizePool)}</span>
+              <span className="pool__text">
+                <strong>in prizes</strong>
+                {usd(prizePerCategory)} for each of the {categoryCount} categories
+              </span>
+            </p>
+          )}
           <div className="hero__body">
             <div className="hero__text">
               <p className="hero__tagline">{event.tagline}</p>
@@ -77,12 +90,17 @@ export default function Home() {
           <h2 className="section__title">Four ways to win</h2>
           <p className="section__lede">
             You get eight hours. Pick the prize you want and build for it.{" "}
-            {event.prizes ?? "Prize details are coming soon."}
+            {prizePerCategory && prizePool
+              ? `Each category pays ${usd(prizePerCategory)} to the winning team, ${usd(prizePool)} in all.`
+              : "Prize details are coming soon."}
           </p>
           <div className="prizes">
             {categories.map((category) => (
               <article className="prize" key={category.id}>
-                <h3 className="prize__name">{category.name}</h3>
+                <div className="prize__head">
+                  <h3 className="prize__name">{category.name}</h3>
+                  {prizePerCategory && <p className="prize__amount">{usd(prizePerCategory)}</p>}
+                </div>
                 <div className="prize__body">
                   <p className="prize__summary">{category.summary}</p>
                   <p>{category.detail}</p>
@@ -102,6 +120,7 @@ export default function Home() {
           <div className="wrap john__inner">
             <div className="john__story">
               <h2 className="john__title">John Upsilon Turkey Award</h2>
+              {prizePerCategory && <p className="prize__amount">{usd(prizePerCategory)}</p>}
               <p>
                 John has an assignment due by midnight, but he still needs to eat. His hands are
                 covered in delicious gravy, and he needs a way to use his computer.
