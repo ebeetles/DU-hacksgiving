@@ -24,6 +24,13 @@ export default function Home() {
     <>
       <section className="hero">
         <div className="wrap hero__inner">
+          {event.location && (
+            <p className="where">
+              {event.liveNow && <span className="where__live">Happening now</span>}
+              <span className="where__room">{event.location}</span>
+              <span className="where__text">{event.timeLong}</span>
+            </p>
+          )}
           <p className="hero__presents">
             <GreekLetters className="hero__greek" />
             {event.host} presents

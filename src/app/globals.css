@@ -133,6 +133,13 @@ body::before {
 .pool__text { display: grid; gap: 0.25rem; font-weight: 600; font-size: var(--step-1); line-height: 1.25; }
 .pool__text strong { font-family: var(--font-display); font-weight: 400; font-size: clamp(2rem, 4.5vw, 3rem); line-height: 0.9; text-transform: uppercase; color: var(--cream); }
 
+.where { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem clamp(1rem, 3vw, 1.75rem); justify-self: stretch; max-width: 100%; padding: clamp(0.75rem, 2vw, 1.1rem) clamp(1rem, 3vw, 1.75rem); background: var(--gold); color: var(--navy-deep); border: 2px solid var(--navy-deep); box-shadow: 8px 8px 0 var(--orange); }
+.where__live { display: inline-flex; align-items: center; gap: 0.5em; font-family: var(--font-code); font-weight: 700; font-size: clamp(0.85rem, 1.6vw, 1.1rem); letter-spacing: 0.14em; text-transform: uppercase; }
+.where__live::before { content: ""; width: 0.8em; height: 0.8em; background: #d6261e; animation: blink 1s steps(2, jump-none) infinite; }
+.where__room { font-family: var(--font-display); font-size: clamp(3.5rem, 10vw, 6.5rem); line-height: 0.8; }
+.where__text { font-weight: 700; font-size: var(--step-1); }
+@keyframes blink { 50% { opacity: 0; } }
+
 .hero__presents { display: flex; align-items: center; gap: 0.75rem; margin-bottom: calc(-1 * clamp(1rem, 2.5vw, 1.75rem)); font-family: var(--font-code); font-weight: 600; font-size: clamp(0.9rem, 1.6vw, 1.15rem); letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); }
 .hero__greek { display: block; height: 1.6em; width: auto; flex: none; }
 

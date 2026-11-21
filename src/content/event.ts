@@ -12,7 +12,9 @@ export const event = {
   dateLong: "Saturday, November 21",
   timeLong: "12 to 8 pm",
 
-  location: null as string | null,
+  location: "DH 2315" as string | null,
+  /** True while the event is running: shows a "happening now" banner at the top of the page. */
+  liveNow: true,
   fundraisingDeadline: null as string | null,
   /** Prize for the winning team in each category, in dollars. */
   prizePerCategory: 500 as number | null,
